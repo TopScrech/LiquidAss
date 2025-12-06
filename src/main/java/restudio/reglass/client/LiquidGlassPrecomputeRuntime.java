@@ -91,7 +91,6 @@ public final class LiquidGlassPrecomputeRuntime {
                 blurTempTex.close();
             }
             blurTempTex = RenderSystem.getDevice().createTexture("reglass blurTemp", 12, TextureFormat.RGBA8, w, h, 1, 1);
-            blurTempTex.setTextureFilter(FilterMode.LINEAR, false);
             blurTempView = RenderSystem.getDevice().createTextureView(blurTempTex);
         }
     }
@@ -105,7 +104,6 @@ public final class LiquidGlassPrecomputeRuntime {
                 tex.close();
             }
             GpuTexture newTex = RenderSystem.getDevice().createTexture("reglass blurred r=" + radius, 12, TextureFormat.RGBA8, w, h, 1, 1);
-            newTex.setTextureFilter(FilterMode.LINEAR, false);
             GpuTextureView newView = RenderSystem.getDevice().createTextureView(newTex);
             blurredByRadius.put(radius, newTex);
             blurredViewByRadius.put(radius, newView);
@@ -190,7 +188,7 @@ public final class LiquidGlassPrecomputeRuntime {
                 RenderSystem.bindDefaultUniforms(pass);
                 pass.setUniform("SamplerInfo", samplerInfoUbo);
                 pass.setUniform("Config", blurConfigUboX);
-                pass.bindSampler("DiffuseSampler", main.getColorAttachmentView());
+                pass.bindTexture("DiffuseSampler", main.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
                 pass.setVertexBuffer(0, quadVB);
                 pass.setIndexBuffer(ib, it);
                 pass.drawIndexed(0, 0, 6, 1);
@@ -201,7 +199,7 @@ public final class LiquidGlassPrecomputeRuntime {
                 RenderSystem.bindDefaultUniforms(pass);
                 pass.setUniform("SamplerInfo", samplerInfoUbo);
                 pass.setUniform("Config", blurConfigUboY);
-                pass.bindSampler("DiffuseSampler", blurTempView);
+                pass.bindTexture("DiffuseSampler", blurTempView, RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
                 pass.setVertexBuffer(0, quadVB);
                 pass.setIndexBuffer(ib, it);
                 pass.drawIndexed(0, 0, 6, 1);

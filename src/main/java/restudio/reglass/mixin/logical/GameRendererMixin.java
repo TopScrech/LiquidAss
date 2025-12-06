@@ -4,6 +4,7 @@ import com.mojang.blaze3d.buffers.GpuBuffer;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.systems.RenderPass;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.textures.FilterMode;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import java.util.List;
 import java.util.OptionalDouble;
@@ -70,9 +71,9 @@ public abstract class GameRendererMixin {
                 pass.setUniform("CustomUniforms", uniforms.getCustomUniformsBuffer());
                 pass.setUniform("WidgetInfo", uniforms.getWidgetInfoBuffer());
                 pass.setUniform("BgConfig", uniforms.getBgConfigBuffer());
-                pass.bindSampler("Sampler0", mainFb.getColorAttachmentView());
+                pass.bindTexture("Sampler0", mainFb.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
 
-                GuiRenderer guiRenderer = ((GameRendererAccessor) (Object) this).getGuiRenderer();
+                GuiRenderer guiRenderer = ((GameRendererAccessor) this).getGuiRenderer();
                 GpuBuffer quadVB = ((QuadVertexBufferProvider) guiRenderer).getQuadVertexBuffer();
                 RenderSystem.ShapeIndexBuffer quadIBInfo = RenderSystem.getSequentialBuffer(VertexFormat.DrawMode.QUADS);
                 com.mojang.blaze3d.buffers.GpuBuffer quadIB = quadIBInfo.getIndexBuffer(6);
@@ -88,14 +89,14 @@ public abstract class GameRendererMixin {
                     };
                     if (i < radii.size()) {
                         int r = radii.get(i);
-                        if (r <= 0) pass.bindSampler(samplerName, mainFb.getColorAttachmentView());
-                        else pass.bindSampler(samplerName, LiquidGlassPrecomputeRuntime.get().getBlurredViewForRadius(r));
+                        if (r <= 0) pass.bindTexture(samplerName, mainFb.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
+                        else pass.bindTexture(samplerName, LiquidGlassPrecomputeRuntime.get().getBlurredViewForRadius(r), RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
                     } else {
                         if (!radii.isEmpty()) {
                             int r0 = radii.getFirst();
-                            if (r0 <= 0) pass.bindSampler(samplerName, mainFb.getColorAttachmentView());
-                            else pass.bindSampler(samplerName, LiquidGlassPrecomputeRuntime.get().getBlurredViewForRadius(r0));
-                        } else pass.bindSampler(samplerName, mainFb.getColorAttachmentView());
+                            if (r0 <= 0) pass.bindTexture(samplerName, mainFb.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
+                            else pass.bindTexture(samplerName, LiquidGlassPrecomputeRuntime.get().getBlurredViewForRadius(r0), RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
+                        } else pass.bindTexture(samplerName, mainFb.getColorAttachmentView(), RenderSystem.getSamplerCache().get(FilterMode.LINEAR));
                     }
                 }
                 pass.drawIndexed(0, 0, 6, 1);
