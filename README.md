@@ -1,15 +1,14 @@
-# ReGlass By ReStudio
-### Liquid Glass Implemented On Your Favorite Pixelated And Cubic Game
+# LiquidAss By TopScrech
+### Liquid Glass in Minecraft
 
 <img width="669" height="422" alt="Screenshot 2025-10-20 113022" src="https://github.com/user-attachments/assets/d5c99347-c8cd-4c21-a430-54a0499c5f0f" />
 
-
-ReGlass Is Meant To Be An API For Any Minecraft Mod.
+LiquidGlass Is Meant To Be An API For Any Minecraft Mod
 
 ### Features
-- Easy, Customizable, And Fast Glass Rendering API.
-- Highly Optimized, Almost Vanilla Performance (For Dedicated GPU PCs).
-- Some Minecraft UI Redesigns.
+- Easy, Customizable, And Fast Glass Rendering API
+- Highly Optimized, Almost Vanilla Performance (For Dedicated GPU PCs)
+- Some Minecraft UI Redesigns
 
 ### API Example:
 ```java
@@ -36,10 +35,10 @@ addDrawableChild(new LiquidGlassWidget(width / 2 - 75, height / 2 - 25, 150, 50,
 ```
 
 ### Keybinds:
-- `G`: Open The Configuration Screen For ReGlass. (Click In-Game)
-- `H`: Playground, Shows a Styled ReGlass Widget, And You Can Summon More By Right Clicking. All Widgets Are Draggable. (Click In-Game)
+- `G`: Open The Configuration Screen For LiquidAss
+- `H`: Playground, Shows a Styled ReGlass Widget, And You Can Summon More By Right Clicking. All Widgets Are Draggable
 
 ## Contributing Is More Than Welcome!
-Especially In The Minecraft UI Redesign Part, This Part Is Highly WIP And Needs a Lot of Work.
+Especially In The Minecraft UI Redesign Part, This Part Is Highly WIP And Needs a Lot of Work
 
 <img width="426" height="251" alt="Sun Set" src="https://github.com/user-attachments/assets/8231c19b-abea-42b2-807f-35c3f089d3c0" />
