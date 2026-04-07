@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "reglass",
-  "version": "1.1.0",
+  "version": "${version}",
   "name": "LiquidAss",
   "description": "Liquid Glass Implemented On Your Favorite Pixelated And Cubic Game.",
   "authors": [
