@@ -3,8 +3,6 @@
 
 <img width="669" height="422" alt="Screenshot 2025-10-20 113022" src="https://github.com/user-attachments/assets/d5c99347-c8cd-4c21-a430-54a0499c5f0f" />
 
-LiquidGlass Is Meant To Be An API For Any Minecraft Mod
-
 ### Features
 - Easy, Customizable, And Fast Glass Rendering API
 - Highly Optimized, Almost Vanilla Performance (For Dedicated GPU PCs)
